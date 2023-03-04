@@ -1,27 +1,52 @@
-<template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-</template>
+<script lang="ts" setup>
+import {onMounted, ref, watch} from 'vue';
+import Test from "@/components/Test.vue";
+import {Pokemon} from "@/models/Pokemon";
+import {PokemonResponseDto} from "@/dto/PokemonResponseDto";
+import axios from 'axios';
+import {getImage, getId} from "@/utils/pokemonService";
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
 
-@Options({
-  components: {
-    HelloWorld,
-  },
+const pokemons = ref<Pokemon[]>([]);
+let filteredPokemons = ref<Pokemon[]>([]);
+let input = ref("");
+
+const filteredListPokemons = (search: string): Pokemon[] => {
+  if ("" === search){
+    return [];
+  }
+  return pokemons.value.filter((search) =>
+      search.name.toLowerCase().includes(input.value.toLowerCase())
+  );
+}
+
+watch(input, (value) => {
+  filteredPokemons.value = filteredListPokemons(value);
 })
-export default class App extends Vue {}
+
+
+onMounted(() => {
+   axios.get<PokemonResponseDto>('https://pokeapi.co/api/v2/pokemon/?limit=151')
+       .then((response) => {
+         pokemons.value = response.data.results;
+       })
+})
+
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<template>
+  <h1>Pokedex</h1>
+  <input type="text" v-model="input" placeholder="Search pokemon">
+  <div class="container">
+    <div class="card" v-for="(pokemon) in filteredPokemons" :key="pokemon.name">
+      <h3>{{ pokemon.name }}</h3>
+      <img :src="getImage(getId(pokemon.url))" :alt="pokemon.name">
+    </div>
+  </div>
+  <Test></Test>
+</template>
+
+<style scoped>
+@import "assets/style.css";
 </style>
+
