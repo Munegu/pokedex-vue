@@ -17,6 +17,15 @@
     -webkit-text-stroke: 1px #375daa;
 }
 
+.header input {
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.header input::placeholder, input:focus {
+    color: black;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
