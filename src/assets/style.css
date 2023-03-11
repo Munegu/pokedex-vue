@@ -1,3 +1,8 @@
+@font-face {
+    font-family: pokemonFontSolid;
+    src: url('~@/../src/assets/fonts/PokemonSolid.ttf');
+}
+
 .header {
     display: flex;
     flex-direction: column;
@@ -6,11 +11,18 @@
     margin-bottom: 20px;
 }
 
+.header h1 {
+    font-family: pokemonFontSolid, serif;
+    color: #ffcc01;
+    -webkit-text-stroke: 1px #375daa;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
-    width: 50%;
+    width: 40%;
     margin: auto;
+    justify-content: center;
 }
 
 .card {
