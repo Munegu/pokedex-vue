@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import {onMounted, ref, watch} from 'vue';
-import Test from "@/components/Test.vue";
 import {Pokemon} from "@/models/Pokemon";
 import {PokemonResponseDto} from "@/dto/PokemonResponseDto";
 import axios from 'axios';
@@ -44,7 +43,11 @@ onMounted(() => {
 
   <div class="header">
     <h1>Pokedex</h1>
-    <input type="text" v-model="input" placeholder="Search pokemon">
+
+    <div class="search__container">
+      <input class="search__input" v-model="input" type="text" placeholder="Search">
+    </div>
+
   </div>
 
   <div class="container">
