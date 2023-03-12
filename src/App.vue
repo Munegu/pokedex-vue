@@ -44,16 +44,18 @@ onMounted(() => {
   <div class="header">
     <h1>Pokedex</h1>
 
-    <div class="search__container">
-      <input class="search__input" v-model="input" type="text" placeholder="Search">
+    <div class="search-container">
+      <input class="search-input" v-model="input" type="text" placeholder="Search">
     </div>
 
   </div>
 
   <div class="container">
     <div class="card" v-for="(pokemon) in filteredPokemons.slice(0, limit)" :key="pokemon.name">
-      <h3>{{ pokemon.name }}</h3>
       <img :src="getImage(getId(pokemon.url))" :alt="pokemon.name">
+      <div class="title-card">
+        <h3>{{ pokemon.name.toUpperCase() }}</h3>
+      </div>
     </div>
   </div>
 

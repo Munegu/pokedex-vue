@@ -17,43 +17,34 @@
     -webkit-text-stroke: 1px #375daa;
 }
 
-.search__container {
+.search-container {
     padding-top: 20px;
 }
 
-.search__input {
+.search-input {
     padding: 12px 24px;
-
     background-color: transparent;
-    transition: transform 250ms ease-in-out;
     font-size: 14px;
     line-height: 18px;
-
     color: #575756;
-    background-repeat: no-repeat;
-    background-size: 18px 18px;
-    background-position: 95% center;
     border-radius: 50px;
-    border: 1px solid #575756;
+    border: 1px solid black;
     transition: all 250ms ease-in-out;
-    backface-visibility: hidden;
-    transform-style: preserve-3d;
 }
 
-.search__input::placeholder {
+.search-input::placeholder {
     color: rgba(87, 87, 86, 0.8);
     text-transform: uppercase;
     letter-spacing: 2px;
 }
 
-.search__input:hover,
-.search__input:focus {
+.search-input:hover,
+.search-input:focus {
     padding: 12px 0;
     outline: 0;
     border: 1px solid transparent;
     border-bottom: 1px solid #575756;
     border-radius: 0;
-    background-position: 100% center;
 }
 
 .container {
@@ -65,18 +56,21 @@
 }
 
 .card {
-    background-color: lightgrey;
+    display: flex;
+    flex-direction: column;
     width: 175px;
     height: 200px;
     border-radius: 10%;
-    padding: 10px;
     border: solid;
     margin: 10px;
+    overflow: hidden;
 }
 
-.card h3 {
+.title-card {
+    background-color: black;
+    color: white;
+    height: 50px;
     text-align: center;
-    color: darkslategrey;
 }
 
 .card img {
@@ -84,6 +78,15 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.card:hover {
+    transform: scale(1.1);
+}
+
+.card:hover > .title-card {
+    background-color: white;
+    color: black;
 }
 
 .show-more {
@@ -99,14 +102,15 @@
     width: 200px;
     height: 50px;
     background-color: white;
-    color: #375daa;
+    color: black;
     font-size: 14px;
     cursor: pointer;
-    border: 2px solid #375daa;
+    border: 2px solid black;
+    transition: all 250ms ease-in-out;
 }
 
 .btn:hover {
-    background-color: #375daa;
+    background-color: black;
     color: white;
 }
 
